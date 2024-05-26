@@ -21,3 +21,5 @@ class TestArticle:
         article_2 = Article(author, magazine_2, "Dating life in NYC")
     
         assert len(Article.all) == 2
+
+    # Add other test cases as needed...
