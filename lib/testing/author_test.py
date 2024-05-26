@@ -11,4 +11,4 @@ class TestAuthor:
         article_2 = Article(author_1, magazine, "Dating life in NYC")
         article_3 = Article(author_2, magazine, "How to be single and happy")
     
-        assert 0 == 2
+        assert len(author_1.articles()) == 2

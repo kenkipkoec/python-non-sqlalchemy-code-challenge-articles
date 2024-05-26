@@ -1,10 +1,14 @@
 class Article:
+    all = []  # Class attribute to hold all instances
+
     def __init__(self, author, magazine, title):
         self._title = title
         self._author = author
         self._magazine = magazine
 
         self._magazine.add_article(self)
+        self._author.add_article_direct(self)  # Updated to add the article to the author
+        Article.all.append(self)  # Add the instance to the Article.all list
 
     @property
     def title(self):
@@ -17,6 +21,10 @@ class Article:
     @property
     def magazine(self):
         return self._magazine
+
+    @title.setter
+    def title(self, value):
+        raise AttributeError("Title is immutable")
 
 
 class Author:
@@ -35,6 +43,10 @@ class Author:
         article = Article(self, magazine, title)
         self._articles.append(article)
         return article
+
+    def add_article_direct(self, article):
+        """Directly add article to the author's list. Used internally by Article."""
+        self._articles.append(article)
 
     def magazines(self):
         return list(set(article.magazine for article in self._articles))
